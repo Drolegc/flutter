@@ -72,6 +72,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/img/platziConf.png
+    - assets/img/Example.jpg
 
   fonts:
     - family: Lato

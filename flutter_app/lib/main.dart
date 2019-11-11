@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/description.dart';
 import 'package:flutter_app/review-list.dart';
+import 'package:flutter_app/gradient_back.dart';
+import 'package:flutter_app/header_appbar.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,25 +18,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text("Hello World!"),
-        ),
-        body:Column(
+        ),*/
+        body:Stack(
           children: <Widget>[
-            Description(this.text_description, 2),
-            ReviewList()
+            ListView(
+              children: <Widget>[
+                Description(text_description,4),
+                ReviewList(),
+              ],
+            ),
+            HeaderAppBar()
           ],
         )
       )//MyHomePage(title: 'Flutter Demo Home Page'),
