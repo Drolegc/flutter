@@ -1,16 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app/description.dart';
-import 'package:flutter_app/review-list.dart';
-import 'package:flutter_app/gradient_back.dart';
-import 'package:flutter_app/header_appbar.dart';
+import 'package:flutter_app/platzi_trips.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  String text_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis ante faucibus, iaculis massa et, feugiat augue. Nulla sagittis nisi id ullamcorper tincidunt. Curabitur sagittis nisi vel orci semper, et molestie neque dapibus. Integer consequat dolor in lectus malesuada, eget placerat justo tristique.";
 
 
   @override
@@ -24,17 +20,7 @@ class MyApp extends StatelessWidget {
         /*appBar: AppBar(
           title: Text("Hello World!"),
         ),*/
-        body:Stack(
-          children: <Widget>[
-            ListView(
-              children: <Widget>[
-                Description(text_description,4),
-                ReviewList(),
-              ],
-            ),
-            HeaderAppBar()
-          ],
-        )
+        body:PlatziTrips()
       )//MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

@@ -10,6 +10,7 @@ class CardImageList extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
+      height: 350.0,
       child: ListView(
         padding: EdgeInsets.all(20.0),
         children: <Widget>[

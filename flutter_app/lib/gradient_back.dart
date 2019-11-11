@@ -17,8 +17,8 @@ class GradientBack extends StatelessWidget{
             Colors.amber,
             Colors.cyan
           ],
-          begin: FractionalOffset(1.2,0.0),
-          end: FractionalOffset(0.0,0.6),
+          begin: FractionalOffset(0.2,0.0),
+          end: FractionalOffset(1.0,0.6),
           stops: [0.1,0.5],
           //tileMode: TitleMode.clamp
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/button.dart';
+
 
 class Description extends StatelessWidget{
 
@@ -46,7 +48,7 @@ class Description extends StatelessWidget{
             right: 20.0,
           ),
           child:Text(
-            "Duwili Ella",
+            "Chile",
             style: const TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.w900,
@@ -69,9 +71,11 @@ class Description extends StatelessWidget{
     );
 
     final description_title = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         title_stars,
-        description
+        description,
+        Button()
       ],
     );
     return description_title;
