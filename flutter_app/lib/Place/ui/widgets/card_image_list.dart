@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/card_image.dart';
+import 'package:flutter_app/Place/ui/widgets/card_image.dart';
 
 class CardImageList extends StatelessWidget{
 

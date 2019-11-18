@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/card_image_list.dart';
+import 'package:flutter_app/Place/ui/widgets/card_image_list.dart';
 
 class GradientBack extends StatelessWidget{
 

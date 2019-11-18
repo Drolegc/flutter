@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/platzi_trips.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:flutter_app/User/bloc/bloc_user.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,17 +13,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        /*appBar: AppBar(
+    return BlocProvider(
+        child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: Scaffold(
+              /*appBar: AppBar(
           title: Text("Hello World!"),
         ),*/
-        body:PlatziTrips()
-      )//MyHomePage(title: 'Flutter Demo Home Page'),
+                body:PlatziTrips()
+            )//MyHomePage(title: 'Flutter Demo Home Page'),
+        ),
+        bloc:UserBloc()
     );
   }
 }
