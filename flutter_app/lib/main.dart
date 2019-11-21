@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_app/platzi_trips.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:flutter_app/User/bloc/bloc_user.dart';
+import 'package:flutter_app/User/ui/screens/sign_in_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
               /*appBar: AppBar(
           title: Text("Hello World!"),
         ),*/
-                body:PlatziTrips()
+                body:SignInScreen()
             )//MyHomePage(title: 'Flutter Demo Home Page'),
         ),
         bloc:UserBloc()

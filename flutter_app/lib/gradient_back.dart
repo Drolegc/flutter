@@ -4,13 +4,16 @@ import 'package:flutter_app/Place/ui/widgets/card_image_list.dart';
 class GradientBack extends StatelessWidget{
 
 
+  double altura = 0.0;
+  String title = "Popular";
+  GradientBack(this.altura,this.title);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    String title = "Popular";
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * this.altura,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -24,7 +27,7 @@ class GradientBack extends StatelessWidget{
       ),
     ),
         child: Text(
-        title,
+        this.title,
           style: TextStyle(
             color:Colors.white,
             fontSize: 30.0,
