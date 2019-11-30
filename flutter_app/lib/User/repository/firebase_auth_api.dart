@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
+/*
+* Logica del negocio
+* */
 class FirebaseAuthAPI {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,4 +21,11 @@ class FirebaseAuthAPI {
 
     return user;
   }
+  
+  void signOut() async{
+    await this._auth.signOut().then((val) => print("Sesion firebase cerrada"));
+    googleSignIn.signOut().then((val) => print("Sesion google cerrada"));
+  }
+
+
 }

@@ -32,7 +32,8 @@ class _SignInScreen extends State<SignInScreen>{
   }
 
   void onPressed(){
-    userBloc.signIn().then((FirebaseUser user) => print("Name: ${user.displayName}") );
+    userBloc.signOut();
+    userBloc.signIn().then((FirebaseUser user) => print("Usuario logueado: ${user.displayName}") );
   }
 
   Widget _handleCurrentSession(){
