@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Place/ui/screens/new_place.dart';
 import 'package:flutter_app/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -24,7 +27,15 @@ class ButtonsBar extends StatelessWidget{
       child: Row(
         children: <Widget>[
           ButtonOpt(icon: Icons.exit_to_app,onPressed: () => {userBloc.signOut()},),
-          ButtonOpt(icon: Icons.add_a_photo),
+          ButtonOpt(icon: Icons.add_a_photo,onPressed: () {
+            File image;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => NewPlace(image: image,)
+              )
+            );
+          },),
           ButtonOpt(icon: Icons.vpn_key),
         ],
       ),

@@ -18,24 +18,13 @@ class ProfileInfoBanner extends StatelessWidget{
     userBloc = BlocProvider.of<UserBloc>(context);
 
     return StreamBuilder(
-      stream: userBloc.authStatus,
-        // ignore: missing_return
+      stream: userBloc.streamFirebase,
       builder: (BuildContext context,AsyncSnapshot snapshot){
-        switch(snapshot.connectionState){
-
-          case ConnectionState.waiting:
-            print("waiting");
-            return CircularProgressIndicator();
-          case ConnectionState.none:
-            //none es por si no hay un stream
-            print("none");
-            return CircularProgressIndicator();
-          case ConnectionState.active:
-            print("active");
-            return this.showProfileData(snapshot);
-          case ConnectionState.done:
-            print("done");
-            return this.showProfileData(snapshot);
+        if(snapshot.connectionState == ConnectionState.active){
+          return this.showProfileData(snapshot);
+        }else{
+          print("waiting");
+          return CircularProgressIndicator();
         }
       }
     );

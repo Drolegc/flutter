@@ -32,7 +32,8 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen>{
       onPressed: this.SomeVoid,
       mini:true,
       tooltip: "Fav",
-      child: this.icono
+      child: this.icono,
+        heroTag: null,
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/User/bloc/bloc_user.dart';
+import 'package:flutter_app/User/model/user.dart';
 import 'package:flutter_app/gradient_back.dart';
 import 'package:flutter_app/platzi_trips.dart';
 import 'package:flutter_app/widgets/button_green.dart';
@@ -33,17 +34,25 @@ class _SignInScreen extends State<SignInScreen>{
 
   void onPressed(){
     userBloc.signOut();
-    userBloc.signIn().then((FirebaseUser user) => print("Usuario logueado: ${user.displayName}") );
+    userBloc.signIn().then((FirebaseUser user) {
+      userBloc.updateUserData(User(
+         uid: user.uid,
+        name: user.displayName,
+        email: user.email,
+        imgProfile: user.photoUrl
+      ));
+    });
   }
 
   Widget _handleCurrentSession(){
   //Manejador de sesion - Que pantalla mostrar segun el stream
 
     return StreamBuilder(
-      stream: this.userBloc.authStatus,
+      stream: userBloc.streamFirebase,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         //Veremos que pasa con el stream desde aqui
         //snapshot - data - Obj
+
         if(!snapshot.hasData || snapshot.hasError){
           return this.signInGoogleUI();
         }else{
