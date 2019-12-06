@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Place/ui/screens/home_trips.dart';
 import 'package:flutter_app/Place/ui/screens/search_trips.dart';
 import 'package:flutter_app/User/ui/screens/profile_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+
+import 'User/bloc/bloc_user.dart';
 
 class PlatziTrips extends StatefulWidget{
 
@@ -34,7 +37,11 @@ class _PlatziTrips extends State<PlatziTrips>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body:this.widgetsChildren[this.index_tap],
+      body:BlocProvider<UserBloc>(
+        bloc: UserBloc(),
+          child: this.widgetsChildren[this.index_tap],
+          //this.widgetsChildren[this.index_tap]
+      ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.white,
