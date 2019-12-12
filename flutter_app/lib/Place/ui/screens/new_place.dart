@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Place/ui/widgets/text_input_location.dart';
 import 'package:flutter_app/gradient_back.dart';
+import 'package:flutter_app/widgets/text_input.dart';
+import 'package:flutter_app/widgets/title_header.dart';
 
 class NewPlace extends StatefulWidget{
 
@@ -24,15 +27,20 @@ class _NewPlace extends State<NewPlace>{
 
   @override
   Widget build(BuildContext context) {
+
+    // Controller por cada input
+    final _controllerTitlePlace = TextEditingController();
+    final _controllerDescriptionPlace = TextEditingController();
+
     // TODO: implement build
     return Scaffold(
       body: Stack(
         children: <Widget>[
           GradientBack(
-            250,
+            0.35,
             ""
           ),
-          Row(
+          Row( //APPBAR
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 25.0,left: 5.0),
@@ -47,8 +55,43 @@ class _NewPlace extends State<NewPlace>{
                     },
                   ),
                 ),
-              )
+              ),
+              Flexible(
+                child:Container(
+                    padding: EdgeInsets.only(top: 45.0,left: 20.0,right: 10.0),
+                    child: TitleHeader(title: "Add a new place"),
+                  ),
+                )
             ],
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 120.0,bottom: 20.0),
+            child: ListView(
+              children: <Widget>[
+                Container(), // Foto
+                Container( // TextField title
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: TextInput(
+                      hintText: "Title",
+                      inputType: null,
+                      controller: _controllerTitlePlace,
+                  ),
+                ),
+                TextInput(
+                  hintText: "Description",
+                  inputType: TextInputType.multiline,
+                  maxLines: 4,
+                  controller: _controllerDescriptionPlace,
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  child: TextInputLocation(
+                    hintText: "Add location",
+                    iconData: Icons.location_on,
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
