@@ -75,7 +75,16 @@ class Description extends StatelessWidget{
       children: <Widget>[
         title_stars,
         description,
-        Button()
+        Button(
+          onPressed: (){
+          Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Navegando!"),
+                duration: Duration(milliseconds: 250),
+              )
+          );
+        },
+            texto: "Navigate",)
       ],
     );
     return description_title;

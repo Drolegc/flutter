@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget{
 
+  final String texto;
+  final VoidCallback onPressed;
+
+  Button({
+    Key key,
+    @required this.texto,
+    @required this.onPressed
+  });
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: (){
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Navegando!"),
-            duration: Duration(milliseconds: 250),
-          )
-        );
-      },
+      onTap: this.onPressed,
       child:Container(
         margin: EdgeInsets.only(
           top: 30.0,
@@ -38,7 +39,7 @@ class Button extends StatelessWidget{
         ),
         child: Center(
           child:Text(
-              "Navigate",
+              this.texto,
             style: TextStyle(
               color:Colors.white,
               fontFamily: "Lato",

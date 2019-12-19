@@ -5,7 +5,6 @@ import 'package:flutter_app/Place/ui/widgets/card_image.dart';
 class CardImageList extends StatelessWidget{
 
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -14,13 +13,15 @@ class CardImageList extends StatelessWidget{
       child: ListView(
         padding: EdgeInsets.all(20.0),
         children: <Widget>[
-          CardImage(),
-          CardImage(),
-          CardImage()
+          CardImage(icon: Icon(Icons.favorite_border),onPressed: null),
+          CardImage(icon: Icon(Icons.favorite_border),onPressed: null),
+          CardImage(icon: Icon(Icons.favorite_border),onPressed: null)
         ],
         scrollDirection: Axis.horizontal,
       ),
     );
   }
+
+
 
 }

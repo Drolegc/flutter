@@ -1,10 +1,17 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Place/model/place.dart';
+import 'package:flutter_app/Place/ui/widgets/card_image.dart';
 import 'package:flutter_app/Place/ui/widgets/text_input_location.dart';
+import 'package:flutter_app/User/bloc/bloc_user.dart';
+import 'package:flutter_app/button.dart';
 import 'package:flutter_app/gradient_back.dart';
 import 'package:flutter_app/widgets/text_input.dart';
 import 'package:flutter_app/widgets/title_header.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class NewPlace extends StatefulWidget{
 
@@ -25,8 +32,18 @@ class NewPlace extends StatefulWidget{
 
 class _NewPlace extends State<NewPlace>{
 
+  void Submit(){
+    //1. Firebase Storage
+    //Url
+    //2. Cloud Firestore
+    //Place
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     // Controller por cada input
     final _controllerTitlePlace = TextEditingController();
@@ -63,12 +80,25 @@ class _NewPlace extends State<NewPlace>{
                   ),
                 )
             ],
+
           ),
           Container(
-            margin: EdgeInsets.only(top: 120.0,bottom: 20.0),
+            margin: EdgeInsets.only(top: 120.0),
             child: ListView(
+              padding: EdgeInsets.only(top: 0.0),
               children: <Widget>[
-                Container(), // Foto
+                Container(
+                  child: CardImage(
+                    height: 200.0,
+                    width: 300.0,
+                    left: 0.0,
+                    icon: Icon(Icons.add_a_photo),
+                    onPressed: () => print("click!!!"),
+                    imagen: widget.image,
+                  ),
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  alignment: AlignmentDirectional.topCenter,
+                ), // Foto
                 Container( // TextField title
                   margin: EdgeInsets.only(bottom: 20.0),
                   child: TextInput(
@@ -88,6 +118,52 @@ class _NewPlace extends State<NewPlace>{
                   child: TextInputLocation(
                     hintText: "Add location",
                     iconData: Icons.location_on,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 10.0),
+                  child: Button(
+                    texto: "Submit",
+                    onPressed: () {
+                      //1. Firebase Storage
+                      //Url
+                      //UID logueado
+                      userBloc.currentUser.then(
+                          (FirebaseUser user) {
+                            if(user != null){
+                              String uid = user.uid;
+                              String path = "${uid}/${DateTime.now().toString()}archivo.jpg";
+                              userBloc.uploadFile(path, widget.image).then(
+                                  (StorageUploadTask uploadFile){
+                                    uploadFile.onComplete.then(
+                                        (StorageTaskSnapshot snap){
+                                          snap.ref.getDownloadURL().then(
+                                              (urlImage){
+                                                print("URL: ${urlImage}");
+                                                //2. Cloud Firestore
+                                                //Place
+                                                userBloc.updatePlaceData(
+                                                    Place(
+                                                      name: _controllerTitlePlace.text,
+                                                      description: _controllerDescriptionPlace.text,
+                                                      urlImage: urlImage
+                                                    )
+                                                ).whenComplete((){
+                                                  print("Place actualizado!!");
+                                                  Navigator.pop(context);
+                                                });
+                                              }
+                                          );
+                                        }
+                                    );
+                                  }
+                              );
+                            }
+                          }
+                      );
+
+
+                    },
                   ),
                 )
               ],
