@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app/Place/model/place.dart';
+import 'package:flutter_app/Place/ui/widgets/place_info.dart';
 import 'package:flutter_app/User/model/user.dart';
+import 'package:flutter_app/User/ui/screens/profile_trips.dart';
 
 class CloudFirestoreAPI {
 
@@ -34,9 +36,20 @@ class CloudFirestoreAPI {
           {
             'name':place.name,
             'description':place.description,
-            'user':"${USERS}/${user.uid}"//reference
+            'urlImage':place.urlImage,
+            'user':_db.document("${USERS}/${user.uid}")//reference
           }
-      );
+      ).then((DocumentReference dr){
+        dr.get().then((DocumentSnapshot snp){
+          snp.documentID;//ID del place que se acaba de subir REFERENCIA ARRAY
+          print("Mostrando data de la IMAGEEEN!!: ");
+          print(snp);
+          DocumentReference refUser = _db.collection(USERS).document(user.uid);
+          refUser.updateData({
+            "myPlaces":FieldValue.arrayUnion([_db.document("${PLACES}/${snp.documentID}")])
+          });
+        });
+      });
     });
     /*
 
@@ -51,5 +64,19 @@ class CloudFirestoreAPI {
     })
     */
 
+  }
+
+  List<PlaceInfo> buildPlaces(List<DocumentSnapshot> placesListSnapshot){
+    List<PlaceInfo> profilePlaces = List<PlaceInfo>();
+    placesListSnapshot.forEach((p){
+      profilePlaces.add(PlaceInfo(
+        place: Place(
+          name: p.data['name'],
+          urlImage: p.data['urlImage'],
+          description: p.data['description']
+        ),
+      ));
+    });
+    return profilePlaces;
   }
 }

@@ -8,6 +8,7 @@ class CardImage extends StatelessWidget{
     double height;
     double width;
     double left;
+    double top;
     final Icon icon;
     VoidCallback onPressed;
     String pathImage;
@@ -15,6 +16,7 @@ class CardImage extends StatelessWidget{
 
     CardImage({
       Key key,
+      this.top = 80.0,
       this.height = 350.0,
       this.width = 250.0,
       this.left = 20.0,
@@ -32,13 +34,13 @@ class CardImage extends StatelessWidget{
       height: this.height,
       width: this.width,
         margin: EdgeInsets.only(
-          top: 80.0,
+          top: this.top,
           left: this.left,
         ),
       decoration: BoxDecoration(
         image:DecorationImage(
           fit: BoxFit.cover,
-          image:(this.imagen != null)?FileImage(imagen): AssetImage(
+          image:(this.imagen != null)?FileImage(imagen): NetworkImage(
             this.pathImage
           ),
         ),

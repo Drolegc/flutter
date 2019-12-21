@@ -15,7 +15,7 @@ class HomeTrips extends StatelessWidget{
       children: <Widget>[
         ListView(
           children: <Widget>[
-            Description(this.text_description,4),
+            Description(text: this.text_description,number_stars: 4,),
             ReviewList(),
           ],
         ),

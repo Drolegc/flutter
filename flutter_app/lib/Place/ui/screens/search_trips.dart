@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/User/bloc/bloc_user.dart';
+import 'package:flutter_app/User/ui/screens/profile_trips.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class SearchTrips extends StatelessWidget{
@@ -29,11 +30,11 @@ class SearchTrips extends StatelessWidget{
             break;
           case ConnectionState.active:
             // TODO: Handle this case.
-          return Text("AL FIN!");
+          return ProfileTrips();
             break;
           case ConnectionState.done:
             // TODO: Handle this case.
-            return Text("AL FIN!");
+            return ProfileTrips();
             break;
         }
         return null;

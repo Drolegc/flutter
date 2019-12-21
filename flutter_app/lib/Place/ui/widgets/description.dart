@@ -7,7 +7,12 @@ class Description extends StatelessWidget{
   String text;
   int number_stars;
 
-  Description(this.text,this.number_stars);
+  Description({
+    Key key,
+    this.text,
+    this.number_stars,
+  });
+  //Description(this.text,this.number_stars);
 
   @override
   Widget build(BuildContext context) {

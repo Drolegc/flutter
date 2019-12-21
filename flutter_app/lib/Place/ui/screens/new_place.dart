@@ -125,6 +125,14 @@ class _NewPlace extends State<NewPlace>{
                   child: Button(
                     texto: "Submit",
                     onPressed: () {
+/*
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Subiendo..."),
+                            duration: Duration(milliseconds: 500),
+                          )
+                      );
+*/
                       //1. Firebase Storage
                       //Url
                       //UID logueado
